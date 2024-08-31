@@ -5,6 +5,10 @@ plugins {
 
 }
 
+tasks.withType<org.springframework.boot.gradle.tasks.run.BootRun> {
+    mainClass.set("org.kwan.javaspringstarter.YourApplication")
+}
+
 allprojects {
     group = "org.kwan.java-spring-starter"
     version = "1.0.0"

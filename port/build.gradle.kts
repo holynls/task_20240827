@@ -1,6 +1,7 @@
-val springDocVersion: String by project
-
 dependencies {
+    val springDocVersion: String by project
+    val springDocMvcVersion: String by project
+
     implementation(project(":domain"))
     implementation(project(":application"))
 
@@ -13,5 +14,5 @@ dependencies {
     annotationProcessor("jakarta.persistence:jakarta.persistence-api")
 
     implementation("org.springdoc:springdoc-openapi-ui:$springDocVersion")
-    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.4")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:$springDocMvcVersion")
 }

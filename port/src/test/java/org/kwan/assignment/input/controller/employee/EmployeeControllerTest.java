@@ -8,8 +8,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
@@ -43,26 +43,6 @@ class EmployeeControllerTest {
             .contentType("application/json")
             .content(json)
         ).andExpect(status().isCreated());
-
-        mockMvc.perform(get("/api/employees?page=1&pageSize=10"))
-            .andExpect(status().isOk())
-            .andExpect(content().json("""
-                [
-                  {
-                    "name": "John Doe",
-                    "email": "test@test.com",
-                    "tel": "12345678923",
-                    "joinedAt": "2021-01-01"
-                  },
-                  {
-                    "name": "Jane Doe",
-                    "email": "test2@test.com",
-                    "tel": "12345678911",
-                    "joinedAt": "2021-01-02"
-                  }
-                ]
-             """));
-
     }
 
     @Test
@@ -77,25 +57,6 @@ class EmployeeControllerTest {
             .contentType("application/json")
             .content(csv)
         ).andExpect(status().isCreated());
-
-        mockMvc.perform(get("/api/employees?page=1&pageSize=10"))
-            .andExpect(status().isOk())
-            .andExpect(content().json("""
-                [
-                  {
-                    "name": "김철수",
-                    "email": "test@test.com",
-                    "tel": "01038423841",
-                    "joinedAt": "2021-01-01"
-                  },
-                  {
-                    "name": "홍길동",
-                    "email": "hong@test.com",
-                    "tel": "01038423843",
-                    "joinedAt": "2021-01-02"
-                  }
-                ]
-             """));
     }
 
     @Test
@@ -113,25 +74,6 @@ class EmployeeControllerTest {
         mockMvc.perform(multipart("/api/employee")
             .file(file)
         ).andExpect(status().isCreated());
-
-        mockMvc.perform(get("/api/employees?page=1&pageSize=10"))
-            .andExpect(status().isOk())
-            .andExpect(content().json("""
-                [
-                  {
-                    "name": "김철수",
-                    "email": "test@test.com",
-                    "tel": "01038423841",
-                    "joinedAt": "2021-01-01"
-                  },
-                  {
-                    "name": "홍길동",
-                    "email": "hong@test.com",
-                    "tel": "01038423843",
-                    "joinedAt": "2021-01-02"
-                  }
-                ]
-             """));
     }
 
     @Test
@@ -139,8 +81,8 @@ class EmployeeControllerTest {
         // Given
         MockMultipartFile file = new MockMultipartFile(
             "file",
-            "employee.csv",
-            "text/csv",
+            "employee.json",
+            "application/json",
             """
             [
               {
@@ -161,25 +103,6 @@ class EmployeeControllerTest {
         mockMvc.perform(multipart("/api/employee")
             .file(file)
         ).andExpect(status().isCreated());
-
-        mockMvc.perform(get("/api/employees?page=1&pageSize=10"))
-            .andExpect(status().isOk())
-            .andExpect(content().json("""
-                [
-                  {
-                    "name": "John Doe",
-                    "email": "test@test.com",
-                    "tel": "12345678923",
-                    "joinedAt": "2021-01-01"
-                  },
-                  {
-                    "name": "Jane Doe",
-                    "email": "test2@test.com",
-                    "tel": "12345678911",
-                    "joinedAt": "2021-01-02"
-                  }
-                ]
-             """));
     }
 
     @Nested

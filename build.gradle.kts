@@ -5,6 +5,12 @@ plugins {
 
 }
 
+tasks {
+    bootJar {
+        enabled = false
+    }
+}
+
 tasks.withType<org.springframework.boot.gradle.tasks.run.BootRun> {
     mainClass.set("org.kwan.assignment.Application")
 }
@@ -33,8 +39,19 @@ subprojects {
     apply(plugin = "org.springframework.boot")
     apply(plugin = "io.spring.dependency-management")
 
-    tasks.test {
-        useJUnitPlatform()
+    tasks {
+        withType<Test> {
+            useJUnitPlatform()
+            maxParallelForks = (Runtime.getRuntime().availableProcessors() / 2)
+        }
+
+        bootJar {
+            enabled = false
+        }
+
+        jar {
+            enabled = true
+        }
     }
 
     dependencies {

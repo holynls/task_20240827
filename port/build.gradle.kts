@@ -13,4 +13,5 @@ dependencies {
     annotationProcessor("jakarta.persistence:jakarta.persistence-api")
 
     implementation("org.springdoc:springdoc-openapi-ui:$springDocVersion")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.4")
 }

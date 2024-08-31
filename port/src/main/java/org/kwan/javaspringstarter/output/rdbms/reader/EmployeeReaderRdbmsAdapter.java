@@ -24,7 +24,7 @@ public class EmployeeReaderRdbmsAdapter extends QuerydslRepositorySupport implem
         this.employeeRepository = employeeRepository;
     }
 
-    private QEmployeeEntity employee = QEmployeeEntity.employeeEntity;
+    private final QEmployeeEntity employee = QEmployeeEntity.employeeEntity;
 
     @Override
     public Employee getEmployeeById(Long id) {

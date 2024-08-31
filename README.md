@@ -36,6 +36,8 @@ Hexagonal Architecture 를 적용하여 아래와 같은 subprojects 및 디렉�
 
 또한 IntelliJ 를 이용한 실행도 가능합니다.
 
+기본 포트는 8080으로 설정되어 있습니다.
+
 ---
 ### Test
 

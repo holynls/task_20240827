@@ -56,20 +56,22 @@ public class EmployeeController {
         @RequestParam Integer page,
         @RequestParam Integer pageSize
     ) {
+        // RESTful API 형식에 맞게 /employee -> /employees 로 endpoint를 변경하였습니다.
         List<Employee> employees = getEmployeeApplication.getEmployeeList(page, pageSize);
 
         return ResponseEntity.ok(employees.stream().map(EmployeeApiResponse::from).toList());
     }
 
-    @Operation(summary = "Get employees by name")
+    @Operation(summary = "Get employees by name. using a plural endpoint because there may be multiple people with the same name.")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Found the employees",
             content = {@Content(mediaType = "application/json",
                 schema = @Schema(implementation = EmployeeApiResponse.class))}),
         @ApiResponse(responseCode = "404", description = "Employees not found", content = @Content)
     })
-    @GetMapping("/employee/name/{name}")
+    @GetMapping("/employees/name/{name}")
     public ResponseEntity<List<EmployeeApiResponse>> getEmployeeByName(@PathVariable String name) {
+        // RESTful API 형식에 맞게 /employee -> /employees 로 endpoint를 변경하였습니다.
         List<Employee> employee = getEmployeeApplication.getEmployeeByName(name);
 
         return ResponseEntity.ok(employee.stream().map(EmployeeApiResponse::from).toList());
@@ -124,7 +126,6 @@ public class EmployeeController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-
     @Operation(summary = "Register employees by CSV file")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "201", description = "Employees registered successfully"),
@@ -135,6 +136,7 @@ public class EmployeeController {
         @RequestParam("file") MultipartFile file
     ) {
         List<CreateEmployeeCommand> commands = List.of();
+
         try (BufferedReader br = new BufferedReader(new InputStreamReader(file.getInputStream()))) {
             parseCsv(br.lines().toList().toString(), commands);
         } catch (Exception e) {

@@ -18,7 +18,7 @@ pluginManagement {
     }
 }
 
-rootProject.name = "java-spring-starter"
+rootProject.name = "assignment"
 
 include(":domain")
 include(":application")

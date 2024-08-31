@@ -17,14 +17,14 @@ public class CreateEmployeeCommand extends SelfValidating {
     @NonNull
     String email;
     @NonNull
-    String phone;
+    String tel;
     @NonNull
     String joinedAt;
 
-    public CreateEmployeeCommand(String name, String email, String phone, String joinedAt) {
+    public CreateEmployeeCommand(String name, String email, String tel, String joinedAt) {
         this.name = name;
         this.email = email;
-        this.phone = phone;
+        this.tel = tel;
         this.joinedAt = joinedAt;
         // validate를 호출하는건 외부에서 알 수 없으므로
         // of, from 등의 static method를 이용하지 않음을 컨벤션으로 맞추는 것이 좋음
@@ -36,7 +36,7 @@ public class CreateEmployeeCommand extends SelfValidating {
             0L,
             name,
             email,
-            phone,
+            tel,
             LocalDate.parse(joinedAt)
         );
     }

@@ -1,18 +1,33 @@
 package org.kwan.javaspringstarter.user.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Value;
 import lombok.experimental.Accessors;
 
 import java.time.LocalDate;
 
-@Data
-@AllArgsConstructor
+@Value
 @Accessors(chain = true)
 public class Employee {
-    private Long id;
-    private String name;
-    private String email;
-    private String tel;
-    private LocalDate joinedAt;
+    Long id;
+    String name;
+    String email;
+    String tel;
+    LocalDate joinedAt;
+
+    @JsonCreator
+    public Employee(
+        @JsonProperty("id") Long id,
+        @JsonProperty("name") String name,
+        @JsonProperty("email") String email,
+        @JsonProperty("tel") String tel,
+        @JsonProperty("joinedAt") LocalDate joinedAt
+    ) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.tel = tel;
+        this.joinedAt = joinedAt;
+    }
 }

@@ -69,7 +69,7 @@ public class EmployeeController {
     ) {
         try {
             if (text != null) {
-                if (text.startsWith("{")) {
+                if (text.startsWith("[") || text.startsWith("{")) {
                     manageEmployeeApplication.createByJson(text);
                 } else {
                     manageEmployeeApplication.createByCsv(text);
@@ -79,7 +79,7 @@ public class EmployeeController {
             if (file != null) {
                 if (file.getOriginalFilename().endsWith(".json")) {
                     manageEmployeeApplication.createByJson(new String(file.getBytes()));
-                } else if (file.getOriginalFilename().startsWith(".csv")) {
+                } else if (file.getOriginalFilename().endsWith(".csv")) {
                     manageEmployeeApplication.createByCsv(new String(file.getBytes()));
                 } else {
                     throw new IllegalArgumentException("Invalid file format");

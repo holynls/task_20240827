@@ -1,6 +1,7 @@
 package org.kwan.javaspringstarter.application.employee;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.kwan.javaspringstarter.application.employee.usecase.CreateEmployeeUseCase;
@@ -64,7 +65,7 @@ public class ManageEmployeeApplication implements CreateEmployeeUseCase {
         try {
             List<Employee> employees = objectMapper.readValue(
                 json,
-                objectMapper.getTypeFactory().constructCollectionType(List.class, Employee.class)
+                new TypeReference<>() {}
             );
 
             employees.forEach(EmployeeValidator::validate);

@@ -26,11 +26,33 @@ Content-Type: text/csv
 ###
 POST localhost:8080/api/employee
 
-김철수,test@test.com,0103842384,2021-01-01
+김철수,test@test.com,01038423841,2021-01-01
 홍길동,hong@test.com,01038423843,2021-01-02
 
 ###
-GET localhost:8080/api/employee/2
+POST localhost:8080/api/employee
+Content-Type: application/json
+
+[
+  {
+    "name": "John Doe",
+    "email": "test@test.com",
+    "tel": "12345678923",
+    "joinedAt": "2021-01-01"
+  },
+  {
+    "name": "Jane Doe",
+    "email": "test2@test.com",
+    "tel": "12345678911",
+    "joinedAt": "2021-01-02"
+  }
+]
 
 ###
-GET localhost:8080/api/employees?page=2&pageSize=5
+GET localhost:8080/api/employee/1
+
+###
+GET localhost:8080/api/employee/name/홍길동
+
+###
+GET localhost:8080/api/employees?page=1&pageSize=5

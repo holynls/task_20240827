@@ -41,7 +41,7 @@ public class EmployeeReaderRdbmsAdapter extends QuerydslRepositorySupport implem
         val query = from(employee);
 
         if (criteria.getPage() != null) {
-            query.offset((long) criteria.getPage() * criteria.getPageSize());
+            query.offset((long) (criteria.getPage()-1) * criteria.getPageSize());
             query.limit(criteria.getPageSize());
         }
 

@@ -29,9 +29,14 @@ subprojects {
     apply(plugin = "org.springframework.boot")
     apply(plugin = "io.spring.dependency-management")
 
+    tasks.test {
+        useJUnitPlatform()
+    }
+
     dependencies {
         implementation(platform("org.springframework.boot:spring-boot-dependencies:$springBootVersion"))
         implementation("org.springframework.boot:spring-boot-starter-web")
+        implementation("org.springframework.boot:spring-boot-starter-test")
 
         implementation("org.slf4j:slf4j-api:$slf4jVersion")
         implementation("ch.qos.logback:logback-core:$logbackVersion")
@@ -39,11 +44,13 @@ subprojects {
         implementation("ch.qos.logback.contrib:logback-jackson:$logbackContribVersion")
         implementation("ch.qos.logback.contrib:logback-json-classic:$logbackContribVersion")
 
+        implementation("com.fasterxml.jackson.core:jackson-databind")
+
         implementation("org.projectlombok:lombok:$lombokVersion")
         annotationProcessor("org.projectlombok:lombok:$lombokVersion")
 
         testImplementation(platform("org.junit:junit-bom:5.10.0"))
-        testImplementation("org.junit.jupiter:junit-jupiter")
+        testImplementation("org.junit.jupiter:junit-jupiter-api")
+        testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
     }
 }
-

@@ -1,6 +1,6 @@
 ## Project Structure
 ### Subprojects
-이 프로젝트는 [Gradle Multi-Project Builds](https://docs.gradle.org/current/userguide/multi_project_builds.html) 를 사용하며,
+이 프로젝트는 [Gradle Multi-Project Builds](https://docs.gradle.org/current/userguide/multi_project_builds.html) 과 Java 21을 사용하며,
 아래와 같은 subprojects 및 디렉토리로 구성되어있습니다.
 
 Hexagonal Architecture 를 적용하여 아래와 같은 subprojects 및 디렉토리로 구성되어있습니다.
@@ -35,3 +35,12 @@ Hexagonal Architecture 를 적용하여 아래와 같은 subprojects 및 디렉�
 `./gradlew port:bootRun` 명령어를 통해 어플리케이션을 실행할 수 있습니다.
 
 또한 IntelliJ 를 이용한 실행도 가능합니다.
+
+---
+### Test
+
+현재 테스트는 `port` 모듈의 Integration Test만 작성되어 있습니다.
+
+유닛 테스트를 작성하지 않은 이유는 유닛 테스트를 작성할 정도로 비즈니스가 복잡하지 않기 때문입니다.
+    
+`./gradlew port:test` 명령어를 통해 테스트를 실행할 수 있습니다.

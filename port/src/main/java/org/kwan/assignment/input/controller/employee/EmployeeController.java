@@ -56,6 +56,10 @@ public class EmployeeController {
         @RequestParam Integer page,
         @RequestParam Integer pageSize
     ) {
+        if (page < 1 || pageSize < 1) {
+            return ResponseEntity.badRequest().build();
+        }
+        
         // RESTful API 형식에 맞게 /employee -> /employees 로 endpoint를 변경하였습니다.
         List<Employee> employees = getEmployeeApplication.getEmployeeList(page, pageSize);
 
